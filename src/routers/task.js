@@ -29,7 +29,7 @@ router.get('/tasks', auth, async (req, res) => {
     }
 
     if(req.query.sortBy && req.query.order) {
-        sort[req.query.sortBy] = req.query.order === 'desc' ? -1 : 1;
+        sort[req.query.sortBy] = req.query.order === 'desc'? -1: 1;
     }
 
     try {
@@ -38,9 +38,9 @@ router.get('/tasks', auth, async (req, res) => {
             match,
             options: {
                 limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip)
+                skip: parseInt(req.query.skip),
+                sort
             },
-            sort
         }).execPopulate();
         res.send(req.user.tasks);
     } catch(e) {
